@@ -256,13 +256,20 @@
 /// - name (content, none): Name of the sender
 /// - address (content, none): Address of the sender
 /// - extra (content, none): Extra information about the sender
-#let header-simple(name, address, extra: none) = {
+#let header-simple(name, address, second-name: none, extra: none) = {
   set text(size: 10pt)
-
-  if name != none {
-    strong(name)
+  
+  if second-name != none {
+    strong(second-name)
     linebreak()
   }
+
+  if name != none {
+    [(#name)]
+    linebreak()
+  }
+
+
   
   if address != none {
     address
@@ -562,6 +569,7 @@
           sender.address.split(", ").join(linebreak())
         },
         extra: sender.at("extra", default: none),
+        second-name: sender.second-name,
       ))
     )
   }
