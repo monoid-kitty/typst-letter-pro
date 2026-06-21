@@ -285,13 +285,13 @@
 /// 
 /// - name (content, none): Name of the sender
 /// - address (content, none): Address of the sender
-#let sender-box(name: none, address) = rect(width: 85mm, height: 5mm, stroke: none, inset: 0pt, {
+#let sender-box(name: none, second-name: none, address) = rect(width: 85mm, height: 5mm, stroke: none, inset: 0pt, {
   set text(size: 7pt)
   set align(horizon)
   
   pad(left: 5mm, underline(offset: 2pt, {
     if name != none {
-      name
+      second-name 
     }
 
     if (name != none) and (address != none) {
@@ -574,7 +574,7 @@
     )
   }
 
-  let sender-box      = sender-box(name: sender.name, sender.address)
+  let sender-box      = sender-box(name: sender.name, second-name: sender.second-name, sender.address)
   let annotations-box = annotations-box(annotations)
   let recipient-box   = recipient-box(recipient)
 
